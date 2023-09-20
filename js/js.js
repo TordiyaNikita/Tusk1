@@ -14,7 +14,7 @@ select.addEventListener('change', (e) => {
         autoIncrement++
         form.insertAdjacentHTML('beforeend', `
         <div id="form_block_${autoIncrement}" class="form_block">
-            <p>${autoIncrement}</p>
+            <span>${autoIncrement}</span>
             <input type="text" >
             <button onclick="addText(${autoIncrement})">Add</button>
         </div>
@@ -25,7 +25,7 @@ select.addEventListener('change', (e) => {
         autoIncrement++
         form.insertAdjacentHTML('beforeend', `
         <div id="form_block_${autoIncrement}" class="form_block">
-            <p>${autoIncrement}</p>
+            <span>${autoIncrement}</span>
             <input type="text" >
             <button onclick="addTable(${autoIncrement})">Add</button>
         </div>
@@ -54,26 +54,47 @@ function addText(id) {
 }
 
 function addTable(id) {
+    autoIncrement++
     const div = document.getElementById(`form_block_${id}`)
     console.log(div.children[1].value);
     let text = div.children[1].value
+    output.insertAdjacentHTML('beforeend', `
+        <table id="table_block_${autoIncrement}">
+            <tr>
+                <th>${id}</th>
+                <th id="title_${id}">${text}</th>
+            </tr>
+        </table>
+        `);
     div.insertAdjacentHTML('beforeend', `
         <button id="change" onclick="changeTable(${id})">Change</button>
-        <button id="delete" onclick="deleteTable(${id})">Delete</button>
+        <button id="delete" onclick="deleteTable(${id})">Delete</button></br>
+        <div id="form_table_${autoIncrement}">
+            <span>${autoIncrement}</span>
+            <input type="text" >
+            <button onclick="addLine(${autoIncrement})">Add</button>
+        </div>
     `);
-    output.insertAdjacentHTML('beforeend', `
-    <table>
-        <tr>
-            <th>id</th>
-            <th>title</th>
-        </tr>
+    
+}
+function addLine(id) {
+    const div = document.getElementById(`form_table_${id}`)
+    let text = div.children[1].value
+    console.log(div.children[1].value);
+    const table = document.getElementById(`table_block_${id}`)
+    div.children[2].classList.toggle('hidden')
+    table.insertAdjacentHTML('beforeend', `
         <tr>
             <td>${id}</td>
             <td id="title_${id}">${text}</td>
         </tr>
-    </table>
+    `)
+    div.insertAdjacentHTML('beforeend', `
+        <button id="change" onclick="changeLine(${id})">Change</button>
+        <button id="delete" onclick="deleteLine(${id})">Delete</button>
     `);
 }
+
 
 function changeText(id) {
     const div = document.getElementById(`form_block_${id}`)
@@ -98,6 +119,6 @@ function deleteBlock(id) {
 function deleteTable(id) {
     const div = document.getElementById(`form_block_${id}`)
     div.remove()
-    const text = document.getElementById(`title_${id}`)
+    const text = document.getElementById(`table_block_${id}`)
     text.remove()
 }
