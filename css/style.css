@@ -4,6 +4,7 @@
     background-attachment: fixed;
     background-size: cover;
     inline-size: 20px;
+    overflow: hidden;
 }
 
 body {
