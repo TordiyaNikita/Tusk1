@@ -1,5 +1,12 @@
 *{
     margin: 0;
     padding: 0;
-    background-attachment: fixed;c
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+
+body {
+
+    kerning: 0ch;
 }
