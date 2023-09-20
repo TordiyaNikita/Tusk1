@@ -38,3 +38,30 @@
 .main_left h1 {
     text-align: center;
 }
+.form_block{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#main_form{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#main_output{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    width: 80%;
+    height: 80%;
+    margin: 0 auto auto;
+    gap: 5px;
+    box-sizing: border-box;
+    padding: 10px;
+    
+}
+.hidden{
+    display: none;
+}
